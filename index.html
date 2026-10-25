@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Background image */
+        .bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Home page */
+        .home {
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .text-bgn {
+            margin: 0 0 25px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            font-size: 28px;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        /* Main navigation buttons */
+        .clicking1,
+        .clicking2,
+        .clicking3 {
+            background-color: rgb(90, 150, 1);
+            color: white;
+            border: 2px solid black;
+            border-radius: 50px;
+            min-height: 70px;
+            width: 250px;
+            max-width: 90%;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 12px;
+            margin: 12px auto;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        .clicking1:hover,
+        .clicking2:hover,
+        .clicking3:hover {
+            background-color: rgb(115, 185, 10);
+            transform: scale(1.04);
+        }
+
+        /* Sections */
+        .page-section {
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding: 70px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.72);
+        }
+
+        .page-section h1 {
+            font-size: 36px;
+            margin-top: 0;
+        }
+
+        .page-section > p {
+            line-height: 1.6;
+        }
+
+        /* Game cards layout */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .game-card {
+            background: rgba(15, 25, 18, 0.96);
+            border: 2px solid rgb(90, 150, 1);
+            border-radius: 18px;
+            padding: 25px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: #a3ed35;
+        }
+
+        .game-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .game-card h2 {
+            margin: 8px 0;
+            font-size: 22px;
+            overflow-wrap: anywhere;
+        }
+
+        .game-card p {
+            color: #dddddd;
+            line-height: 1.5;
+            min-height: 48px;
+        }
+
+        /* Game download buttons */
+        .game-button {
+            display: inline-block;
+            background: rgb(90, 150, 1);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px 22px;
+            border: 2px solid black;
+            border-radius: 25px;
+            margin-top: auto;
+            transition: 0.2s;
+        }
+
+        .game-button:hover {
+            background: rgb(115, 185, 10);
+            transform: scale(1.03);
+        }
+
+        /* Back button */
+        .back-button {
+            background-color: rgb(90, 150, 1);
+            color: white;
+            border: 2px solid black;
+            border-radius: 25px;
+            padding: 12px 25px;
+            margin-top: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background-color: rgb(115, 185, 10);
+        }
+
+        /* Social links */
+        .social-link {
+            display: inline-block;
+            color: white;
+            background: rgb(90, 150, 1);
+            text-decoration: none;
+            padding: 13px 24px;
+            border: 2px solid black;
+            border-radius: 25px;
+            margin: 8px;
+            font-weight: bold;
+        }
+
+        .social-link:hover {
+            background: rgb(115, 185, 10);
+        }
+
+        /* Tablet */
+        @media (max-width: 800px) {
+            .game-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .page-section h1 {
+                font-size: 30px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 520px) {
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .text-bgn {
+                font-size: 24px;
+            }
+
+            .page-section {
+                padding: 55px 15px;
+            }
+
+            .game-card {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background image: keep this image beside index.html -->
+    <img
+        class="bg"
+        src="37981f08b3b5b16200fbba1e419b6e13.jpg"
+        alt=""
+    >
+
+    <!-- HOME -->
+    <main class="home" id="home">
+
+        <p class="text-bgn">WELCOME TO MY SITE</p>
+
+        <button class="clicking1"
+                onclick="goToSection('games')">
+            GAMES
+        </button>
+
+        <button class="clicking2"
+                onclick="goToSection('news')">
+            NEWS
+        </button>
+
+        <button class="clicking3"
+                onclick="goToSection('social')">
+            SOCIAL MEDIA
+        </button>
+
+    </main>
+
+    <h2>Pixel Crush</h2>
+
+<iframe
+    src="games/Pixel Crush/index.html"
+    title="Pixel Crush"
+    width="100%"
+    height="750"
+    style="border: none; border-radius: 12px;"
+    allow="autoplay">
+</iframe>
+    <section class="page-section" id="games">
+
+        <h1>MY GAME LIBRARY</h1>
+
+        <p>Explore my educational games and applications.</p>
+
+        <div class="game-grid">
+
+            <!-- Game 1 -->
+            <article class="game-card">
+                <div class="game-icon">🌍</div>
+                <h2>Ijtima3iyat</h2>
+                <p>Review social studies and test your knowledge.</p>
+                <a class="game-button"
+                   href="games/ijtima3iyat.zip"
+                   download>
+                    DOWNLOAD
+                </a>
+            </article>
+
+            <!-- Game 2 -->
+            <article class="game-card">
+                <div class="game-icon">🌐</div>
+                <h2>Language Infinity</h2>
+                <p>Practice languages and learn new vocabulary.</p>
+                <a class="game-button"
+                   href="games/language-infinity.zip"
+                   download>
+                    DOWNLOAD
+                </a>
+            </article>
+
+            <!-- Game 3 -->
+            <article class="game-card">
+                <div class="game-icon">🧮</div>
+                <h2>MathApp</h2>
+                <p>Practice mathematics with interactive exercises.</p>
+                <a class="game-button"
+                   href="games/mathapp.zip"
+                   download>
+                    DOWNLOAD
+                </a>
+            </article>
+
+            <!-- Game 4 -->
+            <article class="game-card">
+                <div class="game-icon">📖</div>
+                <h2>Rihlat Alhidaya</h2>
+                <p>Revise Islamic education for the second baccalaureate.</p>
+                <a class="game-button"
+                   href="games/rihlat-alhidaya.zip"
+                   download>
+                    DOWNLOAD
+                </a>
+            </article>
+
+            <!-- Game 5 -->
+            <article class="game-card">
+                <div class="game-icon">🔬</div>
+                <h2>Science Infinity</h2>
+                <p>Explore science and practice your knowledge.</p>
+                <a class="game-button"
+                   href="games/science-infinity.zip"
+                   download>
+                    DOWNLOAD
+                </a>
+            </article>
+
+            <!-- Game 6 -->
+            <article class="game-card">
+                <div class="game-icon">🧬</div>
+                <h2>SVT Infinity</h2>
+                <p>Review biology and life and earth sciences.</p>
+                <a class="game-button"
+                   href="games/svt-infinity.zip"
+                   download>
+                    DOWNLOAD
+                </a>
+            </article>
+<!-- Pixel Crush -->
+<article class="game-card">
+    <div class="game-icon">🍬</div>
+    <h2>Pixel Crush</h2>
+    <p>Match candies and beat your high score!</p>
+    <a class="game-button"
+       href="games/Pixel%20Crush/index.html">
+        PLAY GAME
+    </a>
+</article>
+        </div>
+
+        <button class="back-button"
+                onclick="goToSection('home')">
+            BACK TO HOME
+        </button>
+
+    </section>
+
+    <!-- NEWS -->
+    <section class="page-section" id="news">
+
+        <h1>NEWS</h1>
+        <p>Read the latest news here.</p>
+
+        <!-- Add your news articles here later -->
+
+        <button class="back-button"
+                onclick="goToSection('home')">
+            BACK TO HOME
+        </button>
+
+    </section>
+
+    <!-- SOCIAL MEDIA -->
+    <section class="page-section" id="social">
+
+        <h1>SOCIAL MEDIA</h1>
+        <p>Find my social media links here.</p>
+
+        <!-- Replace # with your actual profile URLs -->
+        <a class="social-link" href="#"
+           target="_blank" rel="noopener noreferrer">
+            YouTube
+        </a>
+
+        <a class="social-link" href="#"
+           target="_blank" rel="noopener noreferrer">
+            Instagram
+        </a>
+
+        <a class="social-link" href="#"
+           target="_blank" rel="noopener noreferrer">
+            Discord
+        </a>
+
+        <button class="back-button"
+                onclick="goToSection('home')">
+            BACK TO HOME
+        </button>
+
+    </section>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function goToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+
+            if (section) {
+                section.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
